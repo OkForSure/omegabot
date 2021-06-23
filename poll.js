@@ -1,5 +1,6 @@
 module.exports = (client) => {
     const channelsIds = ['855825500784820255'] // 855825500784820255 = poll
+    const config = require('./config.json')
 
     const addReactions = (message) => {
         message.react('👍')
