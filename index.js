@@ -335,17 +335,18 @@ ${guild.memberCount}`)
                         })
 
                         var embedParent = new Discord.MessageEmbed()
-                            .setTitle(`Hello <@${message.author.id}>`)
+                            .setTitle(`Hello ${message.author.username}`)
                             .setDescription('We will repond!')
 
+                        settedParent.send(`<@${message.member.id}>`)
                         settedParent.send(embedParent)
                     }
                 ).catch(err => {
-                    message.channel.send('Something went wrong, please contact Ok.')
+                    message.channel.send('Something went wrong, please contact 0k.')
                 })
             }
         ).catch(err => {
-            message.channel.send('Something went wrong, please contact Ok.')
+            message.channel.send('Something went wrong, please contact 0k.')
         })
 
     })
@@ -360,6 +361,22 @@ ${guild.memberCount}`)
             message.channel.send('Gelieve dit command te doen in een ticket!')
         }
 
+    })
+
+    command(client, 'unban', (message)=>{
+        const args = message.content.split(' ')
+        if(!message.member.hasPermission('BAN_MEMBERS')) return message.channel.send(`${message.member.id} you don't have the permissions to use this command.`)
+        if(!message.guild.me.hasPermission("BAN_MEMBERS")) return message.channel.send(`${message.member.id} I don't have the permissions to ban a member!`)
+        let userID = args[1]
+        message.guild.fetchBans().then(bans=>{
+            if(bans.size == 0) return
+            let bUser = bans.find(b => b.user == userID)
+            if(!bUser) return
+            message.guild.members.unban(bUser.user)
+            message.channel.send(`<@${message.member.id}>, <@${userID}> is successfuly unbanned!`)
+        }).catch(err => {
+            message.channel.send('Something went wrong, please contact 0k!')
+        })
     })
 })
 
