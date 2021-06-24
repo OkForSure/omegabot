@@ -354,7 +354,7 @@ ${guild.memberCount}`)
     command(client, 'close', (message, args)=>{
         const categoryId = '856524721910972427' // '856524721910972427' = ticket
 
-        if(!message.member.hasPermission("MANAGE_MESSAGES") || !message.member.hasPermission("ADMINISTRATOR")) return message.channel.send((`${message.member.id}, you don't have the permissions to use this command.`))
+        if(!message.member.hasPermission("MANAGE_MESSAGES") || !message.member.hasPermission("ADMINISTRATOR")) return message.channel.send((`<@${message.member.id}>, you don't have the permissions to use this command.`))
         if(message.channel.parentID === categoryId){
             message.channel.delete()
         } else {
