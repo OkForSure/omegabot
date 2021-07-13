@@ -155,7 +155,7 @@ ${guild.memberCount}`)
             .addFields(
                 {
                     name: `Prefix    :    ${prefix}`,
-                    value: '-',
+                    value: '\u200B',
                     inline: false,
                 },
                 {
